@@ -6,6 +6,9 @@ import info from './userinfo';
 import counter from './count';
 
 export default () => {
+    /* eslint-disable no-alert */
+    /* eslint-disable no-undef */
+    alert('Wylosowano liczbe z przedzialu 1-50. Zgaduj!');
     let num = getNum();
     counter.init();
     while (num !== TO_FIND) {

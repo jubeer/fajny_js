@@ -5,16 +5,9 @@ import { getAboutMe } from '../github/service';
 /* eslint-disable eol-last */
 /* eslint-disable no-undef */
 export class AboutMe extends HTMLElement {
-    static get observedAttributes() {
-        return ['about'];
-    }
-
     constructor() {
         super();
         this.shadow = this.attachShadow({ mode: 'open' });
-    }
-
-    attributeChangedCallback(name, oldValue, newValue) {
         this.render();
     }
 

@@ -1,8 +1,8 @@
 import { GitHubRepo } from './model';
 
 const REPOS_URL = 'https://api.github.com/users/mat3e/repos';
-const POSTS_URL = 'https://raw.githubusercontent.com/mat3e/mat3e.github.io/master/blog/en/posts/';
-const ABME_URL = 'https://raw.githubusercontent.com/mat3e/mat3e.github.io/master/blog/en/about-me.md';
+const POSTS_URL = 'posts/';
+const RAW_URL = 'https://raw.githubusercontent.com/mat3e/mat3e.github.io/master/blog/en/';
 const FORBIDDEN_REPOS = ['ux'];
 
 const convert = ({
@@ -31,10 +31,10 @@ export default async function getRepos() {
     }
 }
 
-export async function getBlogPost(name = '0.md') {
+export async function getRawFileContent(pathToFile) {
     try {
         // eslint-disable-next-line no-undef
-        const response = await fetch(`${POSTS_URL}${name}`);
+        const response = await fetch(`${RAW_URL}${pathToFile}`);
         if (response.ok) {
             return (await response.text());
         }
@@ -45,16 +45,10 @@ export async function getBlogPost(name = '0.md') {
     }
 }
 
+export async function getBlogPost(name = '0.md') {
+    return getRawFileContent(`${POSTS_URL}${name}`);
+}
+
 export async function getAboutMe() {
-    try {
-        // eslint-disable-next-line no-undef
-        const response = await fetch(`${ABME_URL}`);
-        if (response.ok) {
-            return (await response.text());
-        }
-        throw Error('Response not 200');
-    } catch (err) {
-        console.warn(err);
-        return '';
-    }
+    return getRawFileContent('about-me.md');
 }
