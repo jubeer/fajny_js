@@ -7,12 +7,16 @@ import startJoke from './joke/index';
 import initBlog from './blog/index';
 import initInfo from './about-me/index';
 
-initInfo();
-initBlog();
+import baselinker from './baselinker/index';
 
-window.controls = {
-    startGame,
-    startJoke
-};
+baselinker();
+
+//  initInfo();
+//  initBlog();
+//
+//  window.controls = {
+//      startGame,
+//      startJoke
+//  };
 
 // main();
