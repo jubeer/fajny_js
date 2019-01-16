@@ -2,7 +2,6 @@
 import { BASE_API_URL, TOKEN, ORDER_ID } from './constants';
 import { SKUList } from './model';
 
-// const RAW_URL = ''
 const METHOD_NAME = 'getOrders';
 const data = `{
     "get_unconfirmed_orders": true,
@@ -14,12 +13,13 @@ form.append('token', TOKEN);
 form.append('method', METHOD_NAME);
 form.append('parameters', data);
 
-// const skus = ({
-//     sku,
-//     quantity
-// }) => new SKUList({
-//     orders: [{ products: [{ sku }, { quantity }] }]
-// });
+const skus = ({
+    sku,
+    quantity
+}) => new SKUList({
+    sku,
+    quantity
+});
 
 export default async function getSKUs() {
     try {
@@ -28,10 +28,10 @@ export default async function getSKUs() {
             body: form
         });
 
-        const all = (await response.json());
+        const { orders: [{ products: [sku, quantity] }] } = (await response.json());
 
-        const { orders: [{ products }] } = all;
-        return { products };
+        return `SKU: ${[sku, quantity]
+            .map(skus)}`;
     } catch (err) {
         console.warn(err);
         return new SKUList({

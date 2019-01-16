@@ -6,6 +6,6 @@ export class SKUList {
     }
 
     toString() {
-        return `1 x ${this.sku}`;
+        return ` ${this.quantity}x${this.sku}`;
     }
 }

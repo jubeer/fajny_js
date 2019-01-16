@@ -6,10 +6,12 @@ import startGame from './game/index';
 import startJoke from './joke/index';
 import initBlog from './blog/index';
 import initInfo from './about-me/index';
+import git from './github/index';
 
 import baselinker from './baselinker/index';
 
 baselinker();
+git();
 
 //  initInfo();
 //  initBlog();
