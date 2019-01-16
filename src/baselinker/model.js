@@ -1,16 +1,11 @@
 /* eslint-disable import/prefer-default-export */
-export class GitHubRepo {
-    constructor({ name, stars, license }) {
-        this.name = name;
-        this.stars = stars;
-        this.license = license;
-    }
-
-    get starsInfo() {
-        return this.stars > 0 ? `(${this.stars} *)` : '';
+export class SKUList {
+    constructor({ sku, quantity }) {
+        this.sku = sku;
+        this.quantity = quantity;
     }
 
     toString() {
-        return `${this.name} ${this.starsInfo} ${this.license}`;
+        return `1 x ${this.sku}`;
     }
 }
